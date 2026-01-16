@@ -7,3 +7,5 @@ and other files and scripts you might need.
 Consider cloning this repository to a location on your personal computer,
 (probably within your coursework folder) so that you can get the files
 you need in future by pulling the latest repository.
+
+Hey look, we changed something.
