@@ -9,3 +9,5 @@ Consider cloning this repository to a location on your personal computer,
 you need in future by pulling the latest repository.
 
 Hey look, we changed something.
+
+And something else
