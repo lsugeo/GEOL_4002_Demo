@@ -1,0 +1,28 @@
+Mon 12 Jan
+  - read Syllabus
+  - download matlab and relevant toolboxes (links in Moodle)
+Wed 14 Jan
+  - Download a syntax-aware text editor (example options linked in Moodle)
+  - make a github account/username
+Fri 16 Jan
+  - Make a github repository called "GEOL4002_YourName" and add me ("lsugeo") as collaborator
+    (might want to use Github Desktop for creating and push/pulls, 
+    adding collaborator must be done on github in your web browser)
+  - Watch intro videos as needs be to get basics of git, github, Github Desktop, and MATLAB
+    (videos linked in Moodle)
+Mon 19 Jan
+  - No Class, MLK day
+Wed 21 Jan
+  - Read Blewitt et al., 2018 EOS article (linked in Moodle)
+  - poke around NGL site (linked in Moodle)
+Fri 23 Jan
+  - download data from station P403.  Write a matlab script to load, parse, and plot all 3 
+    components of the position time series (eastings, northings, and vertical) as individual points 
+  - Bonus (required for grad students):  make your plots better
+  	  - add axis labels, title, grid lines
+  	  - try different colors, line markers, connecting line styles
+  	  - use subplot to plot all 3 axes in a single figure window
+  - Bonus Bonus (not required, but I think you can do it):
+  		- identify the data columns for uncertainties in position
+      - use errorbar to plot the errorbars associated with each point
+  - Push your script to your github repository by 12 pm (noon) on Monday
