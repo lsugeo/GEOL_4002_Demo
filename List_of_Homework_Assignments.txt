@@ -26,3 +26,5 @@ Fri 23 Jan
   		- identify the data columns for uncertainties in position
       - use errorbar to plot the errorbars associated with each point
   - Push your script to your github repository by 12 pm (noon) on Monday
+Mon 26 Jan
+  - Same homework, but do it even better this time!
