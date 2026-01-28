@@ -14,7 +14,7 @@ clear % ALWAYS start your script be clearing the memory cache
 %
 % Load the data
 %
-  fid=fopen('1LSU.NA.tenv3');
+  fid=fopen('P403.NA.tenv3');
   C=textscan(fid,'%s %s %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f','headerlines',1);
   fclose(fid);
 
@@ -29,4 +29,32 @@ clear % ALWAYS start your script be clearing the memory cache
 %
   figure(1)
   clf
+  subplot(2,1,1)
   plot(t,x,'.')
+
+%
+% fit a line to the data
+%
+  P=polyfit(t,x,1);
+  vx=P(1)*1000 % convert from m/y to mm/y
+
+  xline=polyval(P,t);
+
+%
+% plot the line on the existing figure
+%
+  hold on
+  plot(t,xline)
+
+%
+% calculate the residuals
+%
+  xresidual=x-xline;
+
+%
+% plot the residuals
+%
+  subplot(2,1,2)
+  plot(t,xresidual,'.')
+
+

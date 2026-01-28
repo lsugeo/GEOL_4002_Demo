@@ -28,3 +28,17 @@ Fri 23 Jan
   - Push your script to your github repository by 12 pm (noon) on Monday
 Mon 26 Jan
   - Same homework, but do it even better this time!
+Wed 28 Jan
+  - add to/clean up your existing script...
+  - for station P403, fit a line to your E, N, and V data (use polyfit)
+      - the  slope of each line is the velocity value in that direction
+  - plot the best fit line on top of the raw E, N, V timeseries
+      - use the original x-axis values from the data points, use polyval to get the y-axis values
+      - might need to stop plotting the errorbars if the figure gets too busy looking
+  - determine the horizontal velocity magnitude and direction (degrees East of North) for P403
+      - ask yourself: do these values make sense for tectonic motion in the Pacific Nortwest US?
+  - subtract your best fit line values from your original data (these are the "residuals")
+  - make another plot with just the residuals
+      - use labels/titles to keep your results figures organized and clear
+  - Read the Wikipedia article on Episodic Tremor and Slip
+      - stare at your data... do you see it????
