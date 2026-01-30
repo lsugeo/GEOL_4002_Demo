@@ -42,3 +42,10 @@ Wed 28 Jan
       - use labels/titles to keep your results figures organized and clear
   - Read the Wikipedia article on Episodic Tremor and Slip
       - stare at your data... do you see it????
+Fri 30 Jan
+  - make a map (get coastline and political boundary files from github)
+      - BONUS: set the aspect ratio to be sensible for a mercator projection, no matter the figure window size
+  - download GNSS time series for stations P404, P396, P395
+      - BONUS: use the websave command to make the computer do it for you
+  - calculate the velocities for all 4 stations: vx and vy components, and also magnitude and azimuth
+  - plot the velocity vectors for all 4 stations on your map (use quiver)
