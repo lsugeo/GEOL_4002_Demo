@@ -49,3 +49,5 @@ Fri 30 Jan
       - BONUS: use the websave command to make the computer do it for you
   - calculate the velocities for all 4 stations: vx and vy components, and also magnitude and azimuth
   - plot the velocity vectors for all 4 stations on your map (use quiver)
+Mon 2 Feb
+  - Same homework, but do it even better this time!

@@ -12,17 +12,27 @@ clear % ALWAYS start your script be clearing the memory cache
   % !curl https://geodesy.unr.edu/gps_timeseries/IGS20/tenv3/NA/1LSU.NA.tenv3 > 1LSU.NA.tenv3
 
 %
-% Load the data
+% Load and Parse the GNSS data
 %
   fid=fopen('P403.NA.tenv3');
   C=textscan(fid,'%s %s %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f','headerlines',1);
-  fclose(fid);
+  fclose(fid);  
 
-%
-% Parse the data
-%
   t=C{3};
   x=C{9};
+
+  xlocation=C{22}(1);
+  ylocation=C{21}(1);
+
+%
+% Load and Parse the map data
+%
+  fid=fopen('coastfile.xy');
+  C=textscan(fid,'%f %f','headerlines',0);
+  fclose(fid);  
+
+  coast_lon=C{1};
+  coast_lat=C{2};
 
 %
 % Plot the data
@@ -56,5 +66,22 @@ clear % ALWAYS start your script be clearing the memory cache
 %
   subplot(2,1,2)
   plot(t,xresidual,'.')
+
+%
+% plot a map
+%
+  figure(2)
+  clf
+  plot(coast_lon,coast_lat)
+
+  % Karen quick cheat to make a fake vy:
+  vy=vx/2;
+
+%
+% plot a velocity vector on our map
+%
+  hold on
+  quiver(xlocation,ylocation,vx,vy)
+
 
 
