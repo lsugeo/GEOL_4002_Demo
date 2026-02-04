@@ -16,62 +16,61 @@ clear % ALWAYS start your script be clearing the memory cache
 %
 % Download all the data we'll use
 %
-  websave('P403.NA.tenv3','https://geodesy.unr.edu/gps_timeseries/IGS20/tenv3/NA/P403.NA.tenv3');
-  websave('P395.NA.tenv3','https://geodesy.unr.edu/gps_timeseries/IGS20/tenv3/NA/P395.NA.tenv3');
-  websave('P396.NA.tenv3','https://geodesy.unr.edu/gps_timeseries/IGS20/tenv3/NA/P396.NA.tenv3');
-  websave('P404.NA.tenv3','https://geodesy.unr.edu/gps_timeseries/IGS20/tenv3/NA/P404.NA.tenv3');
+  % websave('P403.NA.tenv3','https://geodesy.unr.edu/gps_timeseries/IGS20/tenv3/NA/P403.NA.tenv3');
+  % websave('P395.NA.tenv3','https://geodesy.unr.edu/gps_timeseries/IGS20/tenv3/NA/P395.NA.tenv3');
+  % websave('P396.NA.tenv3','https://geodesy.unr.edu/gps_timeseries/IGS20/tenv3/NA/P396.NA.tenv3');
+  % websave('P404.NA.tenv3','https://geodesy.unr.edu/gps_timeseries/IGS20/tenv3/NA/P404.NA.tenv3');
+
+% %
+% % Load and parse all the GNSS sites
+% %
+%   [t1,x1,xlocation1,ylocation1]=load_and_parse_one_GNSS('P403');
+%   [t2,x2,xlocation2,ylocation2]=load_and_parse_one_GNSS('P395');
+%   [t3,x3,xlocation3,ylocation3]=load_and_parse_one_GNSS('P396');
+%   [t4,x4,xlocation4,ylocation4]=load_and_parse_one_GNSS('P404');
+
+% %
+% % find velocities of all the GNSS sites:
+% %
+%   [vx1,vy1,xline1]=fit_velocity_one_GNSS(t1,x1);
+%   [vx2,vy2,xline2]=fit_velocity_one_GNSS(t2,x2);
+%   [vx3,vy3,xline3]=fit_velocity_one_GNSS(t3,x3);
+%   [vx4,vy4,xline4]=fit_velocity_one_GNSS(t4,x4);
+
+% %
+% % Load and parse all the GNSS sites
+% %
+%   [T{1},X{1},xlocation(1),ylocation(1)]=load_and_parse_one_GNSS('P403');
+%   [T{2},X{2},xlocation(2),ylocation(2)]=load_and_parse_one_GNSS('P395');
+%   [T{3},X{3},xlocation(3),ylocation(3)]=load_and_parse_one_GNSS('P396');
+%   [T{4},X{4},xlocation(4),ylocation(4)]=load_and_parse_one_GNSS('P404');
 
 %
-% Load and Parse the GNSS data for P403
+% Load and parse all the GNSS sites using a nifty for loop!
 %
-  fid=fopen('P403.NA.tenv3');
-  C=textscan(fid,'%s %s %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f','headerlines',1);
-  fclose(fid);  
+  stationlist={'P403','P395','P396','P404'};
 
-  t1=C{3};
-  x1=C{9};
-
-  xlocation1=C{22}(1);
-  ylocation1=C{21}(1);
+  for k=1:4
+    [T{k},X{k},xlocation(k),ylocation(k)]=load_and_parse_one_GNSS(stationlist{k});
+    [vx(k),vy(k),XLINE{k}]=fit_velocity_one_GNSS(T{k},X{k});
+    XRESIDUAL{k}=X{k}-XLINE{k};
+  end
 
 %
-% Load and Parse the GNSS data for P395
+% plot all the data on a single figure together
 %
-  fid=fopen('P395.NA.tenv3');
-  C=textscan(fid,'%s %s %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f','headerlines',1);
-  fclose(fid);  
+  figure(11)
+  clf
 
-  t2=C{3};
-  x2=C{9};
+  for k=1:4
+    subplot(211)
+    plot(T{k},X{k}-X{k}(1))
+    hold on
 
-  xlocation2=C{22}(1);
-  ylocation2=C{21}(1);
-
-%
-% Load and Parse the GNSS data for P396
-%
-  fid=fopen('P396.NA.tenv3');
-  C=textscan(fid,'%s %s %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f','headerlines',1);
-  fclose(fid);  
-
-  t3=C{3};
-  x3=C{9};
-
-  xlocation3=C{22}(1);
-  ylocation3=C{21}(1);
-
-%
-% Load and Parse the GNSS data for P404
-%
-  fid=fopen('P404.NA.tenv3');
-  C=textscan(fid,'%s %s %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f','headerlines',1);
-  fclose(fid);  
-
-  t4=C{3};
-  x4=C{9};
-
-  xlocation4=C{22}(1);
-  ylocation4=C{21}(1);
+    subplot(212)
+    plot(T{k},XRESIDUAL{k})
+    hold on
+  end
 
 %
 % Load and Parse the map data
@@ -83,190 +82,50 @@ clear % ALWAYS start your script be clearing the memory cache
   coast_lon=C{1};
   coast_lat=C{2};
 
-%
-% Plot the data for P403
-%
-  figure(1)
-  clf
-  subplot(2,1,1)
-  plot(t1,x1,'.')
 
 %
-% fit a line to the data for P403
-%
-  P1=polyfit(t1,x1,1);
-  vx1=P1(1)*1000 % convert from m/y to mm/y
-
-  xline1=polyval(P1,t1);
-
-  % Karen quick cheat to make a fake vy:
-  vy1=vx1/2;
-
-
-%
-% plot the line on the existing figure for P403
-%
-  hold on
-  plot(t1,xline1)
-
-%
-% calculate the residuals for P403
-%
-  xresidual1=x1-xline1;
-
-%
-% plot the residuals for P403
-%
-  subplot(2,1,2)
-  plot(t1,xresidual1,'.')
-
-%
-% plot a map for P403
+% plot a map for everything!
 %
   figure(2)
   clf
   plot(coast_lon,coast_lat)
-
-%
-% plot a velocity vector on our map
-%
-  hold on
-  quiver(xlocation1,ylocation1,vx1,vy1)
-
-%
-% Plot the data for P395
-%
-  figure(3)
-  clf
-  subplot(2,1,1)
-  plot(t2,x2,'.')
-  title('P395')
-
-%
-% fit a line to the data for P395
-%
-  P2=polyfit(t2,x2,1);
-  vx2=P2(1)*1000 % convert from m/y to mm/y
-
-  xline2=polyval(P2,t2);
-
-  % Karen quick cheat to make a fake vy:
-  vy2=vx2/2;
-
-
-%
-% plot the line on the existing figure for P395
-%
-  hold on
-  plot(t2,xline2)
-
-%
-% calculate the residuals for P395
-%
-  xresidual2=x2-xline2;
-
-%
-% plot the residuals for P395
-%
-  subplot(2,1,2)
-  plot(t2,xresidual2,'.')
-
-%
-% Plot the data for P396
-%
-  figure(4)
-  clf
-  subplot(2,1,1)
-  plot(t3,x3,'.')
-  title('P396')
-
-%
-% fit a line to the data for P396
-%
-  P3=polyfit(t3,x3,1);
-  vx3=P3(1)*1000 % convert from m/y to mm/y
-
-  xline3=polyval(P3,t3);
-
-  % Karen quick cheat to make a fake vy:
-  vy3=vx3/2;
-
-
-%
-% plot the line on the existing figure for P396
-%
-  hold on
-  plot(t3,xline3)
-
-%
-% calculate the residuals for P396
-%
-  xresidual3=x3-xline3;
-
-%
-% plot the residuals for P396
-%
-  subplot(2,1,2)
-  plot(t3,xresidual3,'.')
-
-%
-% Plot the data for P404
-%
-  figure(5)
-  clf
-  subplot(2,1,1)
-  plot(t4,x4,'.')
-  title('P404')
-
-%
-% fit a line to the data for P404
-%
-  P4=polyfit(t4,x4,1);
-  vx4=P4(1)*1000 % convert from m/y to mm/y
-
-  xline4=polyval(P4,t4);
-
-  % Karen quick cheat to make a fake vy:
-  vy4=vx4/2;
-
-
-%
-% plot the line on the existing figure for P404
-%
-  hold on
-  plot(t4,xline4)
-
-%
-% calculate the residuals for P404
-%
-  xresidual4=x4-xline4;
-
-%
-% plot the residuals for P404
-%
-  subplot(2,1,2)
-  plot(t4,xresidual4,'.')
-
-%
-% plot a map for all the velocities
-%
-  figure(6)
-  clf
-  plot(coast_lon,coast_lat)
-
-%
-% make arrays of the locations and velocity components
-% so they can all be plotted with a single quiver command
-%
-  xlocation_all=[xlocation1;xlocation2;xlocation3;xlocation4];
-  ylocation_all=[ylocation1;ylocation2;ylocation3;ylocation4];
-  vx_all=[vx1;vx2;vx3;vx4];
-  vy_all=[vy1;vy2;vy3;vy4];
-
-%
-% plot a velocity vector on our map
-%
-  hold on
-  quiver(xlocation_all,ylocation_all,vx_all,vy_all)
   xlim([-126,-121])
   ylim([44,50])
+
+%
+% plot a velocity vector on our map
+%
+  hold on
+  quiver(xlocation,ylocation,vx,vy)
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% FUNCTION DEFINITIONS START HERE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  function [t,x,xlocation,ylocation]=load_and_parse_one_GNSS(stationname)
+    filename=[stationname,'.NA.tenv3'];
+
+    fid=fopen(filename);
+    C=textscan(fid,'%s %s %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f','headerlines',1);
+    fclose(fid);  
+
+    t=C{3};
+    x=C{9};
+
+    xlocation=C{22}(1);
+    ylocation=C{21}(1);
+  end
+
+  function [vx,vy,xline]=fit_velocity_one_GNSS(t,x)
+    P=polyfit(t,x,1);
+    vx=P(1)*1000; % convert from m/y to mm/y
+
+    xline=polyval(P,t);
+
+    % Karen quick cheat to make a fake vy:
+    vy=vx/2;
+  end
+
+
