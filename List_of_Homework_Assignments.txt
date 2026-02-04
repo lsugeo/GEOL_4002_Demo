@@ -51,3 +51,14 @@ Fri 30 Jan
   - plot the velocity vectors for all 4 stations on your map (use quiver)
 Mon 2 Feb
   - Same homework, but do it even better this time!
+Wed 4 Feb
+  - Read the Mini-Project 1 assignment (linked on moodle)
+  - Pick a topic you'd like to do your Mini-Project on
+    (Grad Students, consider finding an inspiring paper)
+  - Make a new copy of your existing GNSS analysis we've been
+    working on throughout class, and use the techniques we
+    talked about in class to make it less confusing and more
+    efficient.  (this will make your mini-project much easier...)
+      - e.g., make functions for common code sections
+      - e.g., use arrays and cell arrays to store similar types of data
+      - e.g., use loops to call repetitive tasks
