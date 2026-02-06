@@ -62,3 +62,11 @@ Wed 4 Feb
       - e.g., make functions for common code sections
       - e.g., use arrays and cell arrays to store similar types of data
       - e.g., use loops to call repetitive tasks
+Fri 6 Feb
+  - For your Mini-Project topic, choose a science question
+    to ask and a general plan of how you'll answer it
+  - calculate the pre- and post-seismic velocities for the
+    earthquake on station J175
+      - do all 3 components: east, north, up
+  - plot the pre-, co-, and post-seismic directions on map
+      - do they make sense???
