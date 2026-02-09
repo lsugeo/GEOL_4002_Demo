@@ -70,3 +70,5 @@ Fri 6 Feb
       - do all 3 components: east, north, up
   - plot the pre-, co-, and post-seismic directions on map
       - do they make sense???
+Mon 9 Feb
+  - 
