@@ -64,7 +64,67 @@ clear % ALWAYS start your script be clearing the memory cache
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Calculate the strain between these 3 stations
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %
+  % make the "data" vector of velocities
+  %
+    d=[vx(1);vy(1);vx(2);vy(2);vx(3);vy(3)];
+    % d=[vx(1),vy(1),vx(2),vy(2),vx(3),vy(3)];
 
+  %
+  % calculate the centroid of the triangle and dx dy values
+  %
+    [XUTM,YUTM]=ll2utm(ylocation,xlocation);
+    xcentroid=mean(XUTM);
+    ycentroid=mean(YUTM);
+
+    dx=XUTM-xcentroid;
+    dy=YUTM-ycentroid;
+
+  %
+  % make the G matrix
+  %
+    G = [1, 0, dx(1), dy(1),     0, -dy(1);...
+         0, 1,     0, dx(1), dy(1),  dx(1);...
+         1, 0, dx(2), dy(2),     0, -dy(2);...
+         0, 1,     0, dx(2), dy(2),  dx(2);...
+         1, 0, dx(3), dy(3),     0, -dy(3);...
+         0, 1,     0, dx(3), dy(3),  dx(3)];
+
+  %
+  % calculate m!
+  %
+    m=G\d;
+
+  %
+  % make the Cartesian strain tensor
+  %
+    Exx=m(3);
+    Exy=m(4);
+    Eyy=m(5);
+
+    Etensor=[Exx,Exy;Exy,Eyy];
+
+  %
+  % find the eigen values and eigen vectors
+  % (the principal strains and their principal axes)
+  %
+    [eigenvectors,eigenvalues] = eig(Etensor);
+
+    E1=eigenvalues(1,1);
+    E2=eigenvalues(2,2);
+
+    a1=eigenvectors(1,1);
+    b1=eigenvectors(2,1);
+    a2=eigenvectors(1,2);
+    b2=eigenvectors(2,2);
+
+    figure(3)
+    clf
+    quiver(0,0,a1*E1,b1*E1,'ShowArrowHead','off','Alignment','center')
+    hold on
+    quiver(0,0,a2*E2,b2*E2,'ShowArrowHead','off','Alignment','center')
+    axis equal
+    % plot(dx,dy,'^')
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
