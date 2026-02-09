@@ -68,7 +68,6 @@ clear % ALWAYS start your script be clearing the memory cache
   % make the "data" vector of velocities
   %
     d=[vx(1);vy(1);vx(2);vy(2);vx(3);vy(3)];
-    % d=[vx(1),vy(1),vx(2),vy(2),vx(3),vy(3)];
 
   %
   % calculate the centroid of the triangle and dx dy values
@@ -98,14 +97,14 @@ clear % ALWAYS start your script be clearing the memory cache
   %
   % make the Cartesian strain tensor
   %
-    Exx=m(3);
-    Exy=m(4);
-    Eyy=m(5);
+    Exx=m(3)*1e9; % convert from units of strain to units of nanostrain
+    Exy=m(4)*1e9;
+    Eyy=m(5)*1e9;
 
     Etensor=[Exx,Exy;Exy,Eyy];
 
   %
-  % find the eigen values and eigen vectors
+  % find the eigenvalues and eigenvectors
   % (the principal strains and their principal axes)
   %
     [eigenvectors,eigenvalues] = eig(Etensor);
@@ -124,7 +123,11 @@ clear % ALWAYS start your script be clearing the memory cache
     hold on
     quiver(0,0,a2*E2,b2*E2,'ShowArrowHead','off','Alignment','center')
     axis equal
-    % plot(dx,dy,'^')
+    grid
+
+    % plot the station locations relative to centroid in km, instead of m
+    plot(dx/1e3,dy/1e3,'k^') 
+    quiver(dx/1e3,dy/1e3,vx,vy)
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
