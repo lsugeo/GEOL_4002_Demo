@@ -1,75 +1,99 @@
-Mon 12 Jan
-  - read Syllabus
-  - download matlab and relevant toolboxes (links in Moodle)
-Wed 14 Jan
-  - Download a syntax-aware text editor (example options linked in Moodle)
-  - make a github account/username
-Fri 16 Jan
-  - Make a github repository called "GEOL4002_YourName" and add me ("lsugeo") as collaborator
-    (might want to use Github Desktop for creating and push/pulls, 
-    adding collaborator must be done on github in your web browser)
-  - Watch intro videos as needs be to get basics of git, github, Github Desktop, and MATLAB
-    (videos linked in Moodle)
-Mon 19 Jan
-  - No Class, MLK day
-Wed 21 Jan
-  - Read Blewitt et al., 2018 EOS article (linked in Moodle)
-  - poke around NGL site (linked in Moodle)
-Fri 23 Jan
-  - download data from station P403.  Write a matlab script to load, parse, and plot all 3 
-    components of the position time series (eastings, northings, and vertical) as individual points 
-  - Bonus (required for grad students):  make your plots better
-  	  - add axis labels, title, grid lines
-  	  - try different colors, line markers, connecting line styles
-  	  - use subplot to plot all 3 axes in a single figure window
-  - Bonus Bonus (not required, but I think you can do it):
-  		- identify the data columns for uncertainties in position
-      - use errorbar to plot the errorbars associated with each point
-  - Push your script to your github repository by 12 pm (noon) on Monday
-Mon 26 Jan
-  - Same homework, but do it even better this time!
-Wed 28 Jan
-  - add to/clean up your existing script...
-  - for station P403, fit a line to your E, N, and V data (use polyfit)
-      - the  slope of each line is the velocity value in that direction
-  - plot the best fit line on top of the raw E, N, V timeseries
-      - use the original x-axis values from the data points, use polyval to get the y-axis values
-      - might need to stop plotting the errorbars if the figure gets too busy looking
-  - determine the horizontal velocity magnitude and direction (degrees East of North) for P403
-      - ask yourself: do these values make sense for tectonic motion in the Pacific Nortwest US?
-  - subtract your best fit line values from your original data (these are the "residuals")
-  - make another plot with just the residuals
-      - use labels/titles to keep your results figures organized and clear
-  - Read the Wikipedia article on Episodic Tremor and Slip
-      - stare at your data... do you see it????
-Fri 30 Jan
-  - make a map (get coastline and political boundary files from github)
-      - BONUS: set the aspect ratio to be sensible for a mercator projection, no matter the figure window size
-  - download GNSS time series for stations P404, P396, P395
-      - BONUS: use the websave command to make the computer do it for you
-  - calculate the velocities for all 4 stations: vx and vy components, and also magnitude and azimuth
-  - plot the velocity vectors for all 4 stations on your map (use quiver)
-Mon 2 Feb
-  - Same homework, but do it even better this time!
-Wed 4 Feb
-  - Read the Mini-Project 1 assignment (linked on moodle)
-  - Pick a topic you'd like to do your Mini-Project on
-    (Grad Students, consider finding an inspiring paper)
-  - Make a new copy of your existing GNSS analysis we've been
-    working on throughout class, and use the techniques we
-    talked about in class to make it less confusing and more
-    efficient.  (this will make your mini-project much easier...)
-      - e.g., make functions for common code sections
-      - e.g., use arrays and cell arrays to store similar types of data
-      - e.g., use loops to call repetitive tasks
-Fri 6 Feb
-  - For your Mini-Project topic, choose a science question
-    to ask and a general plan of how you'll answer it
-  - calculate the pre- and post-seismic velocities for the
-    earthquake on station J175
-      - do all 3 components: east, north, up
-  - plot the pre-, co-, and post-seismic directions on map
-      - do they make sense???
-Mon 9 Feb
-  - Start working on your Mini-Project, come to class
-    ready to ask questions!
+List of Homework Assignments for Spring 2026
+
+#############################################
+Part 1: GNSS
+#############################################
+  Mon 12 Jan
+    - read Syllabus
+    - download matlab and relevant toolboxes (links in Moodle)
+  Wed 14 Jan
+    - Download a syntax-aware text editor (example options linked in Moodle)
+    - make a github account/username
+  Fri 16 Jan
+    - Make a github repository called "GEOL4002_YourName" and add me ("lsugeo") as collaborator
+      (might want to use Github Desktop for creating and push/pulls, 
+      adding collaborator must be done on github in your web browser)
+    - Watch intro videos as needs be to get basics of git, github, Github Desktop, and MATLAB
+      (videos linked in Moodle)
+  Mon 19 Jan
+    - No Class, MLK day
+  Wed 21 Jan
+    - Read Blewitt et al., 2018 EOS article (linked in Moodle)
+    - poke around NGL site (linked in Moodle)
+  Fri 23 Jan
+    - download data from station P403.  Write a matlab script to load, parse, and plot all 3 
+      components of the position time series (eastings, northings, and vertical) as individual points 
+    - Bonus (required for grad students):  make your plots better
+    	  - add axis labels, title, grid lines
+    	  - try different colors, line markers, connecting line styles
+    	  - use subplot to plot all 3 axes in a single figure window
+    - Bonus Bonus (not required, but I think you can do it):
+    		- identify the data columns for uncertainties in position
+        - use errorbar to plot the errorbars associated with each point
+    - Push your script to your github repository by 12 pm (noon) on Monday
+  Mon 26 Jan
+    - Same homework, but do it even better this time!
+  Wed 28 Jan
+    - add to/clean up your existing script...
+    - for station P403, fit a line to your E, N, and V data (use polyfit)
+        - the  slope of each line is the velocity value in that direction
+    - plot the best fit line on top of the raw E, N, V timeseries
+        - use the original x-axis values from the data points, use polyval to get the y-axis values
+        - might need to stop plotting the errorbars if the figure gets too busy looking
+    - determine the horizontal velocity magnitude and direction (degrees East of North) for P403
+        - ask yourself: do these values make sense for tectonic motion in the Pacific Nortwest US?
+    - subtract your best fit line values from your original data (these are the "residuals")
+    - make another plot with just the residuals
+        - use labels/titles to keep your results figures organized and clear
+    - Read the Wikipedia article on Episodic Tremor and Slip
+        - stare at your data... do you see it????
+  Fri 30 Jan
+    - make a map (get coastline and political boundary files from github)
+        - BONUS: set the aspect ratio to be sensible for a mercator projection, no matter the figure window size
+    - download GNSS time series for stations P404, P396, P395
+        - BONUS: use the websave command to make the computer do it for you
+    - calculate the velocities for all 4 stations: vx and vy components, and also magnitude and azimuth
+    - plot the velocity vectors for all 4 stations on your map (use quiver)
+  Mon 2 Feb
+    - Same homework, but do it even better this time!
+  Wed 4 Feb
+    - Read the Mini-Project 1 assignment (linked on moodle)
+    - Pick a topic you'd like to do your Mini-Project on
+      (Grad Students, consider finding an inspiring paper)
+    - Make a new copy of your existing GNSS analysis we've been
+      working on throughout class, and use the techniques we
+      talked about in class to make it less confusing and more
+      efficient.  (this will make your mini-project much easier...)
+        - e.g., make functions for common code sections
+        - e.g., use arrays and cell arrays to store similar types of data
+        - e.g., use loops to call repetitive tasks
+  Fri 6 Feb
+    - For your Mini-Project topic, choose a science question
+      to ask and a general plan of how you'll answer it
+    - calculate the pre- and post-seismic velocities for the
+      earthquake on station J175
+        - do all 3 components: east, north, up
+    - plot the pre-, co-, and post-seismic directions on map
+        - do they make sense???
+  Mon 9 Feb
+    - Start working on your Mini-Project, come to class
+      ready to ask questions!
+  Wed 11 Feb
+    - Work on your Mini-Project! Upload slides and code ahead of presentation
+  Fri 13 Feb
+    - Happy Mardi Gras!  No homework, and no class on Wed after break
+
+#############################################
+Part 2: LiDAR
+#############################################
+  Fri 20 Feb
+    - make an account at OpenTopo using your @lsu.edu email address
+    - download a Digital Elevation Model (DEM) from OpenTopo for Wallace Creek
+        - See demo slides on Moodle for tips navigating the system
+        - UTM zone 11, Eastings 242100-243600, Northings 3906200-3907800
+          (approx 35.255ºN, -119.825ºW)
+    - Load the DEM into either GoogleEarth or QGIS, look at the features
+    - Use the length-measuring tool to measure the creek offsets along the fault
+    - make a basic text file with a list of your offset measurements (in meters)
+        - push these to your github by ~noon Monday... we'll compile your results
+          and discuss them in class
