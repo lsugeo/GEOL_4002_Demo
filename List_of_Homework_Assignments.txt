@@ -97,3 +97,13 @@ Part 2: LiDAR
     - make a basic text file with a list of your offset measurements (in meters)
         - push these to your github by ~noon Monday... we'll compile your results
           and discuss them in class
+  Mon 23 Feb
+    - Put all your old GNSS related files into a subfolder on github,
+      to get them out of the way!
+    - use matlab to load and plot the point cloud and DEM models from
+      our Jackson Square example
+        - you can use the demo code, but make sure this works on your machine!
+        - get familiar with the zoom/pan/3D rotate tools for your figures
+    - Bonus: go back to Open Topo, pick any area of interest,
+      download a SMALL (≤ 1 million points) point cloud and DEM,
+      load and plot them both
