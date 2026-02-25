@@ -5,32 +5,32 @@ tic
 % Load pointcloud data from a *.las or *.laz file
 %  - this requires the "lidar" toolbox
 %
-  filename='jacksonsquare_points.laz'; % This one is 1 M points, and the renderer is slow...
-  lasreader=lasFileReader(filename);
-  ptcloud=readPointCloud(lasreader);
+  % filename='jacksonsquare_points.laz'; % This one is 1 M points, and the renderer is slow...
+  % lasreader=lasFileReader(filename);
+  % ptcloud=readPointCloud(lasreader);
 
-  px=ptcloud.Location(:,1);
-  py=ptcloud.Location(:,2);
-  pz=ptcloud.Location(:,3);
+  % px=ptcloud.Location(:,1);
+  % py=ptcloud.Location(:,2);
+  % pz=ptcloud.Location(:,3);
 
-  figure(1)
-  clf
-  plot3(px,py,pz,'.')
-  grid
+  % figure(1)
+  % clf
+  % plot3(px,py,pz,'.')
+  % grid
 
-  figure(2)
-  clf
-  scatter(px,py,5,pz)
-  colorbar
+  % figure(2)
+  % clf
+  % scatter(px,py,5,pz)
+  % colorbar
 
-  figure(3)
-  clf
-  scatter3(x,y,z,5,z)
-  colorbar
+  % % figure(3)
+  % % clf
+  % % scatter3(px,py,pz,5,pz)
+  % % colorbar
 
-  figure(4)
-  clf
-  pcshow(ptcloud)
+  % figure(4)
+  % clf
+  % pcshow(ptcloud)
 
 %
 % Now try the DEM
@@ -54,11 +54,29 @@ tic
   iNaNs=find(a==-9999);
   a(iNaNs)=NaN;
 
+  % flip the image upside down so that it is a proper map
+  a=flipud(a);
+
   figure(5)
   clf
   imagesc(x,y,a)
   colorbar
+  axis equal
+  axis xy
 
-  % The image is still upside down, but we'll fix that next time!
+%
+% Take the gradient!
+%
+  [dadx,dady]=gradient(a);
 
-  
+%
+% Plot the gradient in a "gray" colormap, so it looks like shadows
+%  - we looked at dadx: try looking at dady, or -dadx, or dadx+dady
+%  
+  figure(6)
+  clf
+  imagesc(x,y,dadx)
+  colorbar
+  axis equal
+  axis xy
+  colormap(gray)
