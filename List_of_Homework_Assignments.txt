@@ -107,3 +107,9 @@ Part 2: LiDAR
     - Bonus: go back to Open Topo, pick any area of interest,
       download a SMALL (≤ 1 million points) point cloud and DEM,
       load and plot them both
+  Wed 25 Feb
+    - load the Ridgecrest earthquake "before" and "after" DEMs into matlab
+    - plot the DEMs (using imagesc as usual)
+    - subtract them!
+    - plot the differrence (using imagesc again)
+    - Think about the result... does it make sense?
