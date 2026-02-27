@@ -111,5 +111,25 @@ Part 2: LiDAR
     - load the Ridgecrest earthquake "before" and "after" DEMs into matlab
     - plot the DEMs (using imagesc as usual)
     - subtract them!
-    - plot the differrence (using imagesc again)
+    - plot the difference (using imagesc again)
     - Think about the result... does it make sense?
+  Friday 27 Feb
+    - read the Scott et al., 2022 article (linked on moodle)
+      about topographic differencing with LiDAR
+      (skim the text, focus on the figures)
+    - BONUS: try to reroduce Figure 5c (meandering stream difference)
+      We'll go through how to do this in class Monday, but points for trying!
+      Here are the general steps:
+      - location is SW corner of Indiana, Wabash River, ~37.82N -88.05W,
+        before and after files are on github
+      - load in each of them seperately (as in previous hw)
+      - determine the edges of the sections that overlap
+        (use min and max for this)
+      - determine the index of the parts of the original
+        x and y vectors that fall between the overlap edges
+        (use find for this.  Will need a different set of
+        indices for the "before" grid vs the "after" grid)
+      - use the indices to make a new "smaller_before" and
+        "smaller_after" grid.  These should now be the same size,
+        and cover the exact same area.  They are "co-registered"!
+      - Difference them and, voila, you've made figure 5c!
