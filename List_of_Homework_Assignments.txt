@@ -113,7 +113,7 @@ Part 2: LiDAR
     - subtract them!
     - plot the difference (using imagesc again)
     - Think about the result... does it make sense?
-  Friday 27 Feb
+  Fri 27 Feb
     - read the Scott et al., 2022 article (linked on moodle)
       about topographic differencing with LiDAR
       (skim the text, focus on the figures)
@@ -133,3 +133,8 @@ Part 2: LiDAR
         "smaller_after" grid.  These should now be the same size,
         and cover the exact same area.  They are "co-registered"!
       - Difference them and, voila, you've made figure 5c!
+  Mon 2 Mar
+    - Same Homework!  Make Figure 5c.
+    - If you already did that last time, find a new area,
+      download DEMs from two different times/types,
+      co-register them, and difference them!
