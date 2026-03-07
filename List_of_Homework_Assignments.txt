@@ -138,3 +138,30 @@ Part 2: LiDAR
     - If you already did that last time, find a new area,
       download DEMs from two different times/types,
       co-register them, and difference them!
+  Wed 4 Mar
+    - No Homework today!
+  Fri 6 Mar
+    - download the demo_3Ddiff_Kumamoto.m script from github, along with
+      the icp.m file (this is the part that does the "itterative closest point" 
+      analysis to determin the best displacement for each grid cell) 
+        - recall: if a function is defined in a seperate file (like
+          cpolar.m or icp.m), that file must be in the same directory as
+          your script in order to be able to use it!
+    - download the Kumamoto_example.zip file from moodle, which has
+      the point cloud *.laz files and optional DEM *.tif files
+        - These are commpressed in a folder called "Kumamoto_example".
+          You will need to "uncompress" or "extract" the folder and
+          put it in your working directory
+    - Try running the script on your own machine with the default parameters
+      on lines 58-60
+        - Try commenting and uncommenting lines 141-154 to see (or not) the
+          results for each grid cell
+        - This takes ~1 minute to run on my machine, so be patient.
+        - If you have problems, ask the groupme!
+    - Once your script works, try changing the values of the parameters on 
+      lines 58-60, and run the script again.  Notice how this changes the results!
+    - BONUS: load in the associated DEM files, difference them (they're 
+      already co-registered), and plot your 3D differencing results on top of
+      your vertical differencing results
+        - do the two results together make sense?
+
