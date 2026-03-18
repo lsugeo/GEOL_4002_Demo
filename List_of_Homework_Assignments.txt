@@ -141,13 +141,13 @@ Part 2: LiDAR
   Wed 4 Mar
     - No Homework today!
   Fri 6 Mar
-    - download the demo_3Ddiff_Kumamoto.m script from github, along with
+    - Download the demo_3Ddiff_Kumamoto.m script from github, along with
       the icp.m file (this is the part that does the "itterative closest point" 
       analysis to determin the best displacement for each grid cell) 
         - recall: if a function is defined in a seperate file (like
           cpolar.m or icp.m), that file must be in the same directory as
           your script in order to be able to use it!
-    - download the Kumamoto_example.zip file from moodle, which has
+    - Download the Kumamoto_example.zip file from moodle, which has
       the point cloud *.laz files and optional DEM *.tif files
         - These are commpressed in a folder called "Kumamoto_example".
           You will need to "uncompress" or "extract" the folder and
@@ -164,4 +164,20 @@ Part 2: LiDAR
       already co-registered), and plot your 3D differencing results on top of
       your vertical differencing results
         - do the two results together make sense?
-
+  Mon 16 Mar
+    - No Homework today!
+  Wed 18 Mar
+    - Check the moodle page for the LiDAR mini-project assignment!
+    - Find a paper that uses LiDAR for your proposed topic,
+      post a link to the paper to the class GroupMe by end of Thursday
+    - Come ready to talk about your paper on Friday
+    - Everyone loosely picked a topic today (see list below).  You are welcome 
+      to change your topic, just don't pick the same think as someone else!
+      - Caleb: tornado landscape damage
+      - Susie: beach erosion
+      - Josh: big earthquake
+      - Okenwa: something with landcover, TBD
+      - Logan: urban land change
+      - Sam: sediment erosion/deposition, TBD
+      - Brady: delta changes
+      - Jordyn: wildfire landscape change
