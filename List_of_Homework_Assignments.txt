@@ -181,3 +181,21 @@ Part 2: LiDAR
       - Sam: sediment erosion/deposition, TBD
       - Brady: delta changes
       - Jordyn: wildfire landscape change
+
+#############################################
+Part 3: InSAR
+#############################################
+  Fri 27 Mar
+    - no HW today!
+  Mon 30 Mar
+    - practice interpreting the interferogram from the 1995 Dinar (Turkey) earthquake
+      - Count the fringes, make the line of sight displacement profile.
+      - The topography along the X-X' profile is also provided, 
+        to help you better understand the context of the region.
+    - the example we did in class from the 1999 Izmit (also Turkey) earthquake
+      is posted on moodle under the "Readings" tab, if that helps.
+      Also, the file for the Dinar interferogram and blank profile
+      is posted if you loose your paper copy.
+    - Come Wednesday ready to give your estimate of how much total
+      displacement was generated across this fault by this earthquake!
+
