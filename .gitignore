@@ -2,3 +2,4 @@
 *.tenv3.txt
 .DS_Store
 Kumamoto_example/*
+*.nc

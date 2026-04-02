@@ -1,0 +1,340 @@
+>> ncdisp(filename,'/','min')
+Source:
+	    /Users/kluttrell/LSU_Stuff/TEACHING/GEOL_4002_Geospatial_Spring2026/Part3_InSAR/NISAR_NWLou_2026/S1-GUNW-A-R-063-tops-20250310_20250202-001120-00094W_00032N-PP-46c4-v3_0_1.nc
+Format:
+	    netcdf4
+Variables:
+    productBoundingBox
+	    Size:       465x1
+	    Dimensions: wkt_length,wkt_count
+	    Datatype:   char
+    crs_polygon       
+	    Size:       1x1
+	    Dimensions: 
+	    Datatype:   int32
+Groups:
+    /science/
+	 Groups:
+	     /science/grids/
+		  Groups:
+		      /science/grids/data/
+			   Variables:
+				crs                
+					Size:       1x1
+					Dimensions: 
+					Datatype:   int32
+				longitude          
+					Size:       3789x1
+					Dimensions: longitude
+					Datatype:   double
+				latitude           
+					Size:       2218x1
+					Dimensions: latitude
+					Datatype:   double
+				unwrappedPhase     
+					Size:       3789x2218
+					Dimensions: longitude,latitude
+					Datatype:   single
+				coherence          
+					Size:       3789x2218
+					Dimensions: longitude,latitude
+					Datatype:   single
+				connectedComponents
+					Size:       3789x2218
+					Dimensions: longitude,latitude
+					Datatype:   single
+				amplitude          
+					Size:       3789x2218
+					Dimensions: longitude,latitude
+					Datatype:   single
+				unfilteredCoherence
+					Size:       3789x2218
+					Dimensions: longitude,latitude
+					Datatype:   single
+		      
+		      /science/grids/imagingGeometry/
+			   Variables:
+				crsMeta              
+					Size:       1x1
+					Dimensions: 
+					Datatype:   int32
+				longitudeMeta        
+					Size:       37x1
+					Dimensions: longitudeMeta
+					Datatype:   double
+				latitudeMeta         
+					Size:       28x1
+					Dimensions: latitudeMeta
+					Datatype:   double
+				heightsMeta          
+					Size:       4x1
+					Dimensions: heightsMeta
+					Datatype:   double
+				perpendicularBaseline
+					Size:       37x28x4
+					Dimensions: longitudeMeta,latitudeMeta,heightsMeta
+					Datatype:   single
+				parallelBaseline     
+					Size:       37x28x4
+					Dimensions: longitudeMeta,latitudeMeta,heightsMeta
+					Datatype:   single
+				incidenceAngle       
+					Size:       37x28x4
+					Dimensions: longitudeMeta,latitudeMeta,heightsMeta
+					Datatype:   single
+				lookAngle            
+					Size:       37x28x4
+					Dimensions: longitudeMeta,latitudeMeta,heightsMeta
+					Datatype:   single
+				azimuthAngle         
+					Size:       37x28x4
+					Dimensions: longitudeMeta,latitudeMeta,heightsMeta
+					Datatype:   single
+		      
+		      /science/grids/corrections/
+			   Groups:
+				/science/grids/corrections/derived/
+				    Groups:
+					 /science/grids/corrections/derived/ionosphere/
+					     Variables:
+						  longitude 
+							  Size:       344x1
+							  Dimensions: longitude
+							  Datatype:   double
+						  latitude  
+							  Size:       201x1
+							  Dimensions: latitude
+							  Datatype:   double
+						  ionosphere
+							  Size:       344x201
+							  Dimensions: longitude,latitude
+							  Datatype:   single
+						  crs       
+							  Size:       1x1
+							  Dimensions: 
+							  Datatype:   int64
+					 
+					 /science/grids/corrections/derived/ionosphereBurstRamps/
+					     Variables:
+						  longitude           
+							  Size:       3789x1
+							  Dimensions: longitude
+							  Datatype:   double
+						  latitude            
+							  Size:       2218x1
+							  Dimensions: latitude
+							  Datatype:   double
+						  ionosphereBurstRamps
+							  Size:       3789x2218
+							  Dimensions: longitude,latitude
+							  Datatype:   single
+						  crs                 
+							  Size:       1x1
+							  Dimensions: 
+							  Datatype:   int64
+					 
+				
+				/science/grids/corrections/external/
+				    Groups:
+					 /science/grids/corrections/external/troposphere/
+					     Groups:
+						  /science/grids/corrections/external/troposphere/HRRR/
+						      Groups:
+							   /science/grids/corrections/external/troposphere/HRRR/reference/
+								Variables:
+								    heightsMeta           
+									    Size:       20x1
+									    Dimensions: heightsMeta
+									    Datatype:   single
+								    latitudeMeta          
+									    Size:       41x1
+									    Dimensions: latitudeMeta
+									    Datatype:   single
+								    longitudeMeta         
+									    Size:       64x1
+									    Dimensions: longitudeMeta
+									    Datatype:   single
+								    crs                   
+									    Size:       1x1
+									    Dimensions: 
+									    Datatype:   int32
+								    troposphereWet        
+									    Size:       64x41x20
+									    Dimensions: longitudeMeta,latitudeMeta,heightsMeta
+									    Datatype:   single
+								    troposphereHydrostatic
+									    Size:       64x41x20
+									    Dimensions: longitudeMeta,latitudeMeta,heightsMeta
+									    Datatype:   single
+							   
+							   /science/grids/corrections/external/troposphere/HRRR/secondary/
+								Variables:
+								    heightsMeta           
+									    Size:       20x1
+									    Dimensions: heightsMeta
+									    Datatype:   single
+								    latitudeMeta          
+									    Size:       41x1
+									    Dimensions: latitudeMeta
+									    Datatype:   single
+								    longitudeMeta         
+									    Size:       64x1
+									    Dimensions: longitudeMeta
+									    Datatype:   single
+								    crs                   
+									    Size:       1x1
+									    Dimensions: 
+									    Datatype:   int32
+								    troposphereWet        
+									    Size:       64x41x20
+									    Dimensions: longitudeMeta,latitudeMeta,heightsMeta
+									    Datatype:   single
+								    troposphereHydrostatic
+									    Size:       64x41x20
+									    Dimensions: longitudeMeta,latitudeMeta,heightsMeta
+									    Datatype:   single
+							   
+						  
+					 
+					 /science/grids/corrections/external/tides/
+					     Groups:
+						  /science/grids/corrections/external/tides/solidEarth/
+						      Groups:
+							   /science/grids/corrections/external/tides/solidEarth/reference/
+								Variables:
+								    solidEarthTide
+									    Size:       37x28x4
+									    Dimensions: longitude,latitude,height
+									    Datatype:   single
+								    longitude     
+									    Size:       37x1
+									    Dimensions: longitude
+									    Datatype:   double
+								    latitude      
+									    Size:       28x1
+									    Dimensions: latitude
+									    Datatype:   double
+								    height        
+									    Size:       4x1
+									    Dimensions: height
+									    Datatype:   double
+								    spatial_ref   
+									    Size:       1x1
+									    Dimensions: 
+									    Datatype:   int64
+							   
+							   /science/grids/corrections/external/tides/solidEarth/secondary/
+								Variables:
+								    solidEarthTide
+									    Size:       37x28x4
+									    Dimensions: longitude,latitude,height
+									    Datatype:   single
+								    longitude     
+									    Size:       37x1
+									    Dimensions: longitude
+									    Datatype:   double
+								    latitude      
+									    Size:       28x1
+									    Dimensions: latitude
+									    Datatype:   double
+								    height        
+									    Size:       4x1
+									    Dimensions: height
+									    Datatype:   double
+								    spatial_ref   
+									    Size:       1x1
+									    Dimensions: 
+									    Datatype:   int64
+							   
+						  
+					 
+				
+		      
+	     
+	     /science/radarMetaData/
+		  Variables:
+		      missionID                  
+			      Size:       2x1
+			      Dimensions: /matchup
+			      Datatype:   string
+		      wavelength                 
+			      Size:       1x1
+			      Dimensions: 
+			      Datatype:   single
+		      centerFrequency            
+			      Size:       1x1
+			      Dimensions: 
+			      Datatype:   single
+		      productType                
+			      Size:       2x1
+			      Dimensions: /matchup
+			      Datatype:   string
+		      ISCEversion                
+			      Size:       2x1
+			      Dimensions: /matchup
+			      Datatype:   string
+		      unwrapMethod               
+			      Size:       2x1
+			      Dimensions: /matchup
+			      Datatype:   string
+		      DEM                        
+			      Size:       2x1
+			      Dimensions: /matchup
+			      Datatype:   string
+		      ESDthreshold               
+			      Size:       1x1
+			      Dimensions: 
+			      Datatype:   single
+		      azimuthZeroDopplerStartTime
+			      Size:       2x1
+			      Dimensions: /matchup
+			      Datatype:   string
+		      azimuthZeroDopplerEndTime  
+			      Size:       2x1
+			      Dimensions: /matchup
+			      Datatype:   string
+		      azimuthTimeInterval        
+			      Size:       1x1
+			      Dimensions: 
+			      Datatype:   single
+		      slantRangeSpacing          
+			      Size:       1x1
+			      Dimensions: 
+			      Datatype:   single
+		      slantRangeEnd              
+			      Size:       1x1
+			      Dimensions: 
+			      Datatype:   single
+		      slantRangeStart            
+			      Size:       1x1
+			      Dimensions: 
+			      Datatype:   single
+		  Groups:
+		      /science/radarMetaData/inputSLC/
+			   Groups:
+				/science/radarMetaData/inputSLC/reference/
+				    Variables:
+					 L1InputGranules
+						 Size:       2x1
+						 Dimensions: /matchup
+						 Datatype:   string
+					 orbitType      
+						 Size:       2x1
+						 Dimensions: /matchup
+						 Datatype:   string
+				
+				/science/radarMetaData/inputSLC/secondary/
+				    Variables:
+					 L1InputGranules
+						 Size:       2x1
+						 Dimensions: /matchup
+						 Datatype:   string
+					 orbitType      
+						 Size:       2x1
+						 Dimensions: /matchup
+						 Datatype:   string
+				
+		      
+	     
+    
+>> 

@@ -198,4 +198,19 @@ Part 3: InSAR
       is posted if you loose your paper copy.
     - Come Wednesday ready to give your estimate of how much total
       displacement was generated across this fault by this earthquake!
+  Wed 1 Apr
+    - Make a NASA EarthData account (see link on moodle)
+    - Check out the Alaska Satellite Facility Vertex website (see link on moodle)
+      - check out the options (there are lots)
+      - set the "dataset" as "S1 ARIA GUNW", and try filtering for a
+        place/time of your interest
+      - if you get lost, the help button at top right has lots of
+        quick video tutorials
+    - OPTIONAL: try out loading and plotting from a demo netcdf file
+      We'll do all this together on Monday, but you can be adventuresome if you're interested
+      - download the demo *.nc file for the Ridgecrest earthquake from moodle
+      - see the demo code on github reading in a few bits of interesting data
+        from the *.nc file
+      - see the netcdf format file on github for a list of things you could read in
+      - try loading and plotting stuff, see what you find!
 
