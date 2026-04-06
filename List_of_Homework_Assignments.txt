@@ -213,4 +213,34 @@ Part 3: InSAR
         from the *.nc file
       - see the netcdf format file on github for a list of things you could read in
       - try loading and plotting stuff, see what you find!
+  Mon 6 Apr
+    - fill out the logistics poll on timing for end of semester assignments
+      (linked in the groupme text chain)
+    - Download two interferograms covering the 5 Feb 2023 Turkey earthquake
+      from ASF.  (This event straddles the edge of two standard frames).
+      - recall, ASF Vertex search site is linked on moodle,
+        and has some good tutorials on how to use their search functions.
+        Find them by clicking the "help" button at top right, or their
+        short helpful videos are linked on moodle.
+      - "dataset" is the ARIA S1 GUNW processed interferograms
+      - use the map to select an area of interest
+      - use other filter parameters (e.g., the "start/end date") to narrow
+        your search limits
+      - The two interferograms you download should have the same time period,
+        but be adjacent to one another, covering the entire earthquake region.
+      - I pulled ones from a descending orbit taken 1/29/2023 - 2/10/2023,
+        with the southern one ~ 35E,35N and the northen one ~ 36E,37N
+        (this info is in the filename, as well as the "scene detail" window)
+    - make a script that loads both interferograms and plots both of them
+      - see demo_load_insar.m script that we made in class today on class github
+      - add titles, comments, rearrange the figure order, link other axes, etc., 
+        to make your code make sense to YOU!
+      - Tip: you'll need to keep track of two different sets of variables.
+        You could give them each different names (e.g., N_x vs S_x for north and south grids),
+        or you could put them into different structural arrays (e.g., N.x vs S.x),
+        or any other solution that makes sense to you
+    - BONUS: Try using "hold on" to plot them both on the same figure
+      - Do you notice any problems we might need to try to solve?
+    - Remember to upload your script to github by noon-ish on Wednesday so
+      I can check that you're on the right track!
 
