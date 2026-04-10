@@ -257,4 +257,25 @@ Part 3: InSAR
       - BONUS: try dealing with the annoying wedge of NaNs in the overlap region
       - BONUS BONUS: try masking out the low coherence areas before unwrapping
       - BONUS BONUS BONUS: try turning unwrapped phase into line of sight displacement!
+  Mon 10 Apr
+    - Make a sensible interferogram for the Turkey earthquake from our two descending scenes
+      - plot the wrapped interferogram for the whole area
+      - plot the unwrapped interferogram for the whole area
+      - plot the line-of-sight displacement for the whole area
+      - See the demo_merge_and_unwrap.m script on github for strong guidance
+    - Changes you might want to make for your own version of the script:
+      - make the plots lovelier (sensible titles, color axis limits, make the NaNs transparent, etc.)
+      - When doing this in class, we did some extra steps needed for learning and understanding
+        (e.g., unwrapping the phase both before and after NaNing out the incoherent areas).
+        Maybe now that you've learned that lesson, just keep the best solution in your routine
+      - When doing this in class, we made plots as we went.  Maybe you don't need to keep them all,
+        and maybe it makes more sense to move when in your script the plots get made (e.g., do all the
+        calculations first, then make the plots)
+    - BONUS: now that you have a sensible routine that gives you sensible answers,
+      try downloading a different interferogram scene(s) from ASF.  
+      - Can you load, make, and plot LOS displacement for this new file(s) in the same way?
+      - Suggestions for scenes to choose:
+        try another scene covering this same Turkey earthquake, but choose different times,
+        or maybe choose an ascending track instead of a descending one.
+      - Do your results make sense?
 

@@ -59,9 +59,11 @@ clear
     set(ax(5),'colormap',gray)
 
   linkaxes(ax,'xy')
+  xlim([35.5,39])
+  ylim([35.5,39])
 
 %
-% Make the big merged grid!
+% Make the big merged grid for unwrapped phase
 %
   %
   % figure out the size of the new big grid
@@ -113,30 +115,114 @@ clear
   %    new data you're adding in there
   %
     B.w(N.iy1:N.iy2,N.ix1:N.ix2)=N.w;
+    B.w(S.iy1:S.iy2,S.ix1:S.ix2)=max(S.w,B.w(S.iy1:S.iy2,S.ix1:S.ix2)); % prioritizes keeping the numbers
 
   %
   % plot the new big grid to make sure it makes sense
   %
     figure(2),clf,
+    subplot(221)
     imagesc(B.x,B.y,B.w),axis xy,colorbar
 
+%
+% Try unwrapping your new big wrapped phase grid, using the "unwrap_phase" function
+%  Syntax: UnwrappedGrid = unwrap_phase(WrappedGrid)
+%
   %
-  % Try unwrapping your new big wrapped phase grid, using the "unwrap_phase" function
-  %  Syntax: UnwrappedGrid = unwrap_phase(WrappedGrid)
+  % do the actual unwrapping (this took ~35 seconds on Karen's computer)
   %
+    tic
+    B.u = unwrap_phase(B.w);
+    toc
 
   %
-  % BONUS BONUS: Try masking some of the data in B.w to make the incoherent data into NaNs.
-  %  - actually change the values at those locations to NaNs, 
-  %    don't just make them transparent in the figure
-  %  - try unwrapping the new array with NaNs again (the unwrapping algorithm will ignore the NaNs)
-  %    does the answer make more sense?
+  % Plot the unwrapped result (note how it has some issues)
   %
+    subplot(222)
+    imagesc(B.x,B.y,B.u),axis xy,colorbar
+    colormap(jet)
+
+%
+% make the incoherent areas NaN
+%
+  %
+  % First need to ake big grids of coherence and connected components
+  %
+    % coherence: pixel-by-pixel measure of how related before and after phase is
+    B.c=zeros(numel(B.y),numel(B.x))*NaN; % make a big empty grid and fill it with NaNs
+    B.c(N.iy1:N.iy2,N.ix1:N.ix2)=N.c;
+    B.c(S.iy1:S.iy2,S.ix1:S.ix2)=max(S.c,B.c(S.iy1:S.iy2,S.ix1:S.ix2)); % prioritizes keeping the numbers
+
+    % connected components: index ID numbers for patches of grid that were unwrapped coherently by ARIA
+    B.m=zeros(numel(B.y),numel(B.x))*NaN; % make a big empty grid and fill it with NaNs
+    B.m(N.iy1:N.iy2,N.ix1:N.ix2)=N.m;
+    B.m(S.iy1:S.iy2,S.ix1:S.ix2)=max(S.m,B.m(S.iy1:S.iy2,S.ix1:S.ix2)); % prioritizes keeping the numbers
+
+    % make a version of the wrapped phase that has NaNs in the incoherent areas
+    B.w_with_nans=B.w; % copy the full wrapped nans grid before we start destroying data points
+    B.w_with_nans(find(B.m<1))=NaN;   % This one excludes areas that ARIA couldn't unwrap (too noisy)
+    B.w_with_nans(find(B.c<0.3))=NaN; % This one adds a coherence threshold for the other regions (try changing the threshold)
 
   %
-  % BONUS BONUS BONUS:
-  %  - Once you have unwrapped phase, and you know the wavelength of the radar waves,
-  %    (we loaded from the netcdf file), try converting from phase change to
-  %    Line of Sight displacement (we have an equation for this in our notes)
-  % 
+  % plot the new wrapped grid, now with NaNs removed
+  %
+    subplot(223)
+    imagesc(B.x,B.y,B.w_with_nans),axis xy,colorbar
+
+%
+% Try unwrapping again!
+%
+  %
+  % actual unwrapping (this took ~24 seconds on Karen's computer)
+  %
+    tic
+    B.u_with_nans = unwrap_phase(B.w_with_nans);
+    toc
+
+  %
+  % plot the new unwrapped phase
+  %
+    subplot(224)
+    imagesc(B.x,B.y,B.u_with_nans),axis xy,colorbar
+
+%
+% Same figure again comparing different unwrapping solutions,
+% but plotted all together in a coherent colorscale
+%
+
+    figure(3),clf,
+    subplot(221)
+    imagesc(B.x,B.y,B.w),axis xy,colorbar
+
+    subplot(222)
+    imagesc(B.x,B.y,B.u),axis xy,colorbar
+    caxis([-300,300])
+
+    subplot(223)
+    imagesc(B.x,B.y,B.w_with_nans),axis xy,colorbar
+
+    subplot(224)
+    imagesc(B.x,B.y,B.u_with_nans),axis xy,colorbar
+    caxis([-300,300])
+    colormap(jet)
+
+%
+% Now lets make the LOS displacement!
+%
+  %
+  % Do the math
+  %
+    B.L=N.L; % radar wavelength, from the *.nc file
+    % B.LOS=B.u_with_nans*B.L/4/pi; % THese two statements do the same thing!
+    B.LOS=B.u_with_nans*B.L/(4*pi);
+
+  %
+  % Plot the result
+  %  - recall: LOS displacement is positive if the ground moved toward the satellite,
+  %    negative if the ground moved away from the satellite
+  %
+    figure(4),clf,
+    imagesc(B.x,B.y,B.LOS),axis xy,colorbar
+    colormap(jet)
+    caxis([-1.5,1.5])
 
