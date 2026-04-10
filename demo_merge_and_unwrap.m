@@ -2,12 +2,15 @@ clear
 
 %
 % Load the two scenes
+%  - note, this time we chose to flip the directions of both the latitude values
+%    and the grids in the latitude direction.  This is important to make the
+%    indexing math below work out properly.
 %
   filenameS='S1-GUNW-D-R-021-tops-20230210_20230129-033504-00035E_00035N-PP-8473-v2_0_6.nc';
   filenameN='S1-GUNW-D-R-021-tops-20230210_20230129-033440-00036E_00037N-PP-c92c-v2_0_6.nc';
 
-  % ncdisp(filename); % copied this to output_ncdisp.txt
-  % ncdisp(filename,'/','min'); % shorter format 
+  % ncdisp(filenameN) % full info on file contents
+  % ncdisp(filenameN,'/','min') % shorter info on file contents
 
   S.x=ncread(filenameS,'/science/grids/data/longitude');
   S.y=flipud(ncread(filenameS,'/science/grids/data/latitude'));
@@ -56,4 +59,84 @@ clear
     set(ax(5),'colormap',gray)
 
   linkaxes(ax,'xy')
+
+%
+% Make the big merged grid!
+%
+  %
+  % figure out the size of the new big grid
+  %
+    x1=min([N.x;S.x]);
+    x2=max([N.x;S.x]);
+    y1=min([N.y;S.y]);
+    y2=max([N.y;S.y]);
+
+  %
+  % make an empty big grid of the right size
+  %
+    dx=1/3600*3; % 3 arcsecond spacing (recall, 1 degree of lat/lon = 3600 arcseconds)
+    dy=1/3600*3; % 3 arcsecond spacing
+
+
+    B.x=[x1:dx:(x2+dx/2)]'; % take the transpose to make it a single column, rather than a row
+    B.y=[y1:dy:(y2+dy/2)]';
+
+    B.w=zeros(numel(B.y),numel(B.x))*NaN; % make a big empty grid and fill it with NaNs
+
+  %
+  % Figure out which point in new grid corresponds to each point in old grid.
+  % For example:
+  %  - take the full set of "big" longitude values
+  %  - subtract the edge longitude value from one of the smaller grids
+  %  - take the absolute value of the difference, so that the one closest to
+  %    zero now has the smallest difference value
+  %  - take the minimum of those absolute difference values, but instead of
+  %    saving the "minimum value", save the index of the point where the
+  %    minimum value occurs
+  %
+    [~,S.ix1]=min(abs(B.x-S.x(1)));
+    [~,S.ix2]=min(abs(B.x-S.x(end)));
+    [~,S.iy1]=min(abs(B.y-S.y(1)));
+    [~,S.iy2]=min(abs(B.y-S.y(end)));
+
+    [~,N.ix1]=min(abs(B.x-N.x(1)));
+    [~,N.ix2]=min(abs(B.x-N.x(end)));
+    [~,N.iy1]=min(abs(B.y-N.y(1)));
+    [~,N.iy2]=min(abs(B.y-N.y(end)));
+
+  %
+  % Fill in the Big grid!
+  %  - you should add the South grid on your own
+  % BONUS: notice an extra wedge of NaNs where they shouldn't be?
+  %    When adding the south data, try taking the maximum value
+  %    between the grid that exists in those locations and the
+  %    new data you're adding in there
+  %
+    B.w(N.iy1:N.iy2,N.ix1:N.ix2)=N.w;
+
+  %
+  % plot the new big grid to make sure it makes sense
+  %
+    figure(2),clf,
+    imagesc(B.x,B.y,B.w),axis xy,colorbar
+
+  %
+  % Try unwrapping your new big wrapped phase grid, using the "unwrap_phase" function
+  %  Syntax: UnwrappedGrid = unwrap_phase(WrappedGrid)
+  %
+
+  %
+  % BONUS BONUS: Try masking some of the data in B.w to make the incoherent data into NaNs.
+  %  - actually change the values at those locations to NaNs, 
+  %    don't just make them transparent in the figure
+  %  - try unwrapping the new array with NaNs again (the unwrapping algorithm will ignore the NaNs)
+  %    does the answer make more sense?
+  %
+
+  %
+  % BONUS BONUS BONUS:
+  %  - Once you have unwrapped phase, and you know the wavelength of the radar waves,
+  %    (we loaded from the netcdf file), try converting from phase change to
+  %    Line of Sight displacement (we have an equation for this in our notes)
+  % 
 

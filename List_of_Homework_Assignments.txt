@@ -243,4 +243,18 @@ Part 3: InSAR
       - Do you notice any problems we might need to try to solve?
     - Remember to upload your script to github by noon-ish on Wednesday so
       I can check that you're on the right track!
+  Wed 8 Apr
+    !!! Oops, I forgot to push this to github after class... Well, this had been the plan...
+    - For the two Turkey earthquake interferogram scenes you downloaded and plotted last time...
+      - merge them together into a single big grid (see demo_merge_and_unwrap.m for full details)
+        (we did most of this in class today)
+      - Once you have the big grid of wrapped phase, plot it to make sure it looks right
+      - Try unwrapping the phase of the new big wrapped phase grid, using the function
+        "unwrap_phase" posted on our class github (see demo_merge_and_unwrap.m for full details)
+      - Plot the unwrapped phase... does it still have the weird jump problem we had before?
+    - BONUS things you can try (all of these have details in the demo_merge_and_unwrap.m script)
+      You don't have to succeed, but do try if you have time.
+      - BONUS: try dealing with the annoying wedge of NaNs in the overlap region
+      - BONUS BONUS: try masking out the low coherence areas before unwrapping
+      - BONUS BONUS BONUS: try turning unwrapped phase into line of sight displacement!
 
