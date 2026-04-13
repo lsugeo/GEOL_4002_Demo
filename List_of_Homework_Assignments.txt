@@ -257,7 +257,7 @@ Part 3: InSAR
       - BONUS: try dealing with the annoying wedge of NaNs in the overlap region
       - BONUS BONUS: try masking out the low coherence areas before unwrapping
       - BONUS BONUS BONUS: try turning unwrapped phase into line of sight displacement!
-  Mon 10 Apr
+  Fri 10 Apr
     - Make a sensible interferogram for the Turkey earthquake from our two descending scenes
       - plot the wrapped interferogram for the whole area
       - plot the unwrapped interferogram for the whole area
@@ -278,4 +278,25 @@ Part 3: InSAR
         try another scene covering this same Turkey earthquake, but choose different times,
         or maybe choose an ascending track instead of a descending one.
       - Do your results make sense?
+  Mon 13 Apr
+    For our Ridgecrest earthquake example with two independent descending interferograms...
+    - Get the the scene files ready (see the demo_stack_and_difference.m script on github)
+      - download the two scenes listed in the filenames from ASF 
+        (or pick others from the same location that include the earthquake on 2019-07-06)
+      - cut the two grids to the same size, so you can do math with them 
+        (we did this in class today, this is already in the script)
+    - "stack" the unwrapped phase, aka take the average of the two grids
+      - it's simplest to just do the arithmatic, i.e. add them and divide by two
+      - re-wrap the new average phase, just because it's easier to see the differences that way
+      - Plot the stacked grid in unwrapped and wrapped phase... (how) does it look different from
+        the original individual interferograms?
+    - BONUS: subtract the new "average" phase from each original individual interferogram.
+      This should allow you to see the isolated impact of all the non-deformation parts
+      (mostly atmosphere/troposphere, maybe some ionosphere, maybe other deformation during that time)
+      - again, it's simplest to just do the arithmatic, i.e. mean grid minus original grid
+      - be sure to plot the resulting grids, and think about what they look like
+        (might want to also re-wrap them, but might not need to.)
+    - post your code to github by noonish on Wednesday so I can see how you did and where we need help
+      - questions? send me an email, or ask your peers on groupme!
+
 
