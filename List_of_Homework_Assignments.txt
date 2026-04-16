@@ -298,5 +298,29 @@ Part 3: InSAR
         (might want to also re-wrap them, but might not need to.)
     - post your code to github by noonish on Wednesday so I can see how you did and where we need help
       - questions? send me an email, or ask your peers on groupme!
+  Wed 15 Apr
+    For our Ridgecrest earthquake example, use the demo_okada_model_Ridgecrest.m script to 
+    model the earthquake displcement!
+    - make sure you download both the demo script and the okada85.m subroutine from github
+    - download an interferogram scene that has the Ridgecrest earthquake in it.
+      - if your scene is different from mine, that's ok, just update the filename
+      - remember to pay attention to ascending vs descending.  I used a descending scene for this one.
+    - Try running the script as is
+      - it should make two figures: one showing just model output, and another showing observations,
+        model, and the comparison between them
+      - if it doesn't work for some reason, ask the GroupMe for help!
+      - The default parameters will not match the Ridgecrest earthquake very well
+    - Try changing the parameters (these start on Line 66) and see what happens
+      - start by just watching the model output figure
+      - try different strike, dip, rake
+      - try different fault plane center location
+      - try different fault plane size
+      - try different fault plane slip
+      - try adding in opening (or closing)
+    - Once you have a feel for the variations, try to match the Ridgecrest earthquake
+      deformation pattern
+      - the RMS values are shown in the title of the last figure, if that helps
+    - Come on Friday ready to share the parameters that worked best for you!
+    
 
 
