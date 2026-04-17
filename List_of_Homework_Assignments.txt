@@ -321,6 +321,23 @@ Part 3: InSAR
       deformation pattern
       - the RMS values are shown in the title of the last figure, if that helps
     - Come on Friday ready to share the parameters that worked best for you!
-    
+  Fri 17 Apr
+    - Fill out the WhenIsGood poll by noon Monday: https://whenisgood.net/icah4j7
+    - Adapt our code comparing a model and observations of surface deformation
+      from the Ridgecrest earthquake to incorporate observations from BOTH
+      an ascending scene and a descending scene.
+      - we talked about this in class today, and put comments in the 
+        demo_okada_model_Ridgecrest.m file for you to follow
+      - for an ascending scene, you can use the first one we ever loaded, which is linked on moodle:
+        filename is S1-GUNW-A-R-064-tops-20190710_20190628-015013-36885N_35006N-PP-a1b9-v2_0_2.nc
+    - Once your code works with both scenes and computes the RMS difference from both scenes,
+      try adjusting the model parameters again to find a model that best fits both the
+      ascending and descending scenes.
+      - once you find the best fitting model, fill out the google form with the best fitting parameters
+        and also the RMS error values of your best model compared with both the descending and ascending
+        observations.  (same form as linked on groupme during Friday's class, also linked below)
+        https://forms.gle/cnXacKTjVZSTEHdz8
+    - Push your updated script to github by noon on Monday so we can check your understanding.
+
 
 

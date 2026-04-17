@@ -23,6 +23,10 @@ clear
   D1.L=ncread(filename,'/science/radarMetaData/wavelength'); % wavelength (m)
   D1.w=mod(D1.u,2*pi);
 
+  %
+  % HW: READ IN THE ASCENDING INTERFEROGRAM FILE HERE
+  %
+
 %
 % Cut the grids so they focus on our area of interest
 %
@@ -41,6 +45,11 @@ clear
     [~,D1.ix2]=min(abs(D1.x-x2));
     [~,D1.iy1]=min(abs(D1.y-y1));
     [~,D1.iy2]=min(abs(D1.y-y2));
+
+    %
+    % HW: FIND THE INDICES FOR THE ASCENDING SCENE IN THIS REGION
+    %
+
 
   %
   % make the smaller grids, and put them in the structural array "Observations"
@@ -63,6 +72,11 @@ clear
     % make the line of sight displacement
     Observations.LOS=Observations.u*L/(4*pi);
 
+    %
+    % MAYBE RENAME OBSERVATIONS TO INDICATED THAT THIS IS FOR DESCENDING
+    % THEN MAKE ANOTHER ONE WITH THE ASCENDING OBSERVATIONS
+    %
+
 %
 % Define the parameters we'll use for our model
 % THIS IS PROBABLY THE ONLY THING YOU'LL NEED TO CHANGE TO DO THIS HOMEWORK.
@@ -71,28 +85,28 @@ clear
   %
   % center location of the fault plane
   %
-    x0=-118;
-    y0=36;
+    x0=-117.5;
+    y0=35.7;
 
   %
   % fault/plane orientation info
   %
-    STRIKE=85;  % degrees east of north
-    DIP=10;     % degress down from horizontal
+    STRIKE=322;  % degrees east of north
+    DIP=85;     % degress down from horizontal
 
   %
   % fault/plane dimensions and location
   %
     DEPTH=10;   % center of plane, km below the surface
-    LENGTH=40;  % along strike length of plane, km
-    WIDTH=18;   % along dip width of plane, km
+    LENGTH=42.5;  % along strike length of plane, km
+    WIDTH=13.75;   % along dip width of plane, km
 
   %
   % amount and direction of motion on fault/plane
   %
-    RAKE=95;    % direction of in-plane hanging wall motion, in deg CCW from strike
-    SLIP=8;     % how much in-plane slip (m)
-    OPEN=0.0;   % how much opening (+) or closing (-) of the plane (m)
+    RAKE=180;    % direction of in-plane hanging wall motion, in deg CCW from strike
+    SLIP=3;     % how much in-plane slip (m)
+    OPEN=0;   % how much opening (+) or closing (-) of the plane (m)
 
 %
 % Make the model displacement on the same grid locations as the observations
@@ -169,15 +183,28 @@ clear
   %
     CompareMisfit.LOS=Observations.LOS-Model.LOS_descending;
 
+    %
+    % HW: RENAME THIS LOS TO MAKE SURE IT'S USING THE DESCENDING OBSERVATIONS,
+    % THEN MAKE ANOTHER ONE FOR THE ASCENDING OBSERVATIONS
+    %
+
   %
   % for visualization, calculate the wrapped phase associated with difference in LOS displacement
   %
     CompareMisfit.w=mod(CompareMisfit.LOS/L*4*pi,2*pi);
 
+    %
+    % HW: SAME THING HERE
+    %
+
   %
   % Calcualte the RMS value of the misfit, ignoring any NaN points
   %
     CompareMisfit.RMS=rms(CompareMisfit.LOS(:),'omitnan');
+    
+    %
+    % HW: SAME THING HERE
+    %
 
 %
 % Plot the model predictions, in detail
@@ -239,6 +266,11 @@ clear
 %
 % Plot the observations, model, and misfit all together
 %
+
+  %
+  % HW: UPDATE THE NAMES OF OUR OBSERVATIONS AND MISFIT TO INCLUDE "DESCENDING" SPECIFIER
+  %
+
   figure(2),clf
   ax(1)=subplot(321);
     imagesc(x,y,Observations.w,'alphadata',~isnan(Observations.w)),
@@ -285,5 +317,8 @@ clear
   colormap(jet)
   linkaxes(ax,'xy')
 
+%
+% HW: MAKE ANOTHER MODEL FIGURE, BUT THIS TIME USING THE ASCENDING OBSERVATIONS! AND MODEL, AND MISFIT
+%
 
 
